@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:flowable="http://flowable.org/bpmn"
+             targetNamespace="http://www.flowable.org/processdefinition">
+
+    <process id="myProcess" name="My Sample Process" isExecutable="true">
+        <startEvent id="start" name="Start"/>
+        <sequenceFlow sourceRef="start" targetRef="serviceTask1"/>
+
+        <serviceTask id="serviceTask1" name="Service Task 1" flowable:async="false" flowable:class="com.example.demo.CompleteService1"/>
+        <sequenceFlow sourceRef="serviceTask1" targetRef="serviceTask2"/>
+
+        <serviceTask id="serviceTask2" name="Service Task 2" flowable:async="false" flowable:class="com.example.demo.CompleteService2"/>
+        <sequenceFlow sourceRef="serviceTask1" targetRef="end"/>
+
+        <endEvent id="end" name="End"/>
+    </process>
+
+</definitions>
